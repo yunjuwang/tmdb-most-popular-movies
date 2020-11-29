@@ -1,0 +1,221 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap')
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap')
+
+=size($w,$h:$w)
+  width: $w
+  height: $h
+=flexCenter
+  display: flex
+  justify-content: center
+  align-items: center
+=bxshadow
+  box-shadow: 0px 5px 25px 5px rgba(black,0.2) 
+=fixedPos($l,$t)
+  position: fixed
+  left: $l
+  top: $t
+
+*
+  vertical-align: center
+  outline: none
+  // border: solid 1px black
+
+html, body
+  height: 100%
+  margin: 0
+  font-family: 'Roboto', sans-serif
+  // background-color: #111 
+  
+#app
+  +size(100%)
+  background-color: #0e1523
+  background: linear-gradient(50deg,#0d032d 0%, #1c1040 20%,#d76d77 65%,#ffd1b0 90% )
+  // color: white
+  display: flex
+  overflow: hidden
+  .title
+    +fixedPos(38px,18px)
+    color: rgba(white,0.7)
+    mix-blend-mode: overlay
+    text-shadow: 0px 0px 10px rgba(white,0.8)
+    font-size: 48px
+    font-weight: bold
+    font-family: "Roboto Mono", sans-serif
+  .movie
+    flex: 1
+  .cards
+    +flexCenter
+    justify-content: left
+    height: 100%
+    margin-left: 20vw
+    margin-right: 20vw
+    position: relative
+    // left: -1000px
+    transition: 0.5s, left 0s
+    // &.isFavoriteOpen
+      // transform: scale(0.8)
+  .card
+    padding: 20px
+    padding-bottom: 0px
+    margin: 60px
+    +size(460px, auto)
+    flex-shrink: 0
+    display: inline-flex
+    position: relative
+    // display: flex
+    color: #888
+    background-color: rgba(white,0.7)
+    transition: 0.5s
+    border-radius: 5px
+    +bxshadow
+    &:hover
+      background-color: rgba(white,0.8)
+    .left
+      flex: 1
+      margin-top: -15px
+      .cover
+        +size(180px, 240px)
+        border-radius: 5px
+        +bxshadow
+        transition: 0.5s
+        position: relative
+        top: -50px
+    .right
+      flex: 2
+      padding: 10px 10px 20px 20px
+      h2
+        margin: 0
+        margin-right: 55px
+        font-weight: bold
+        font-size: 24px
+        color: #444
+        span
+          font-weight: normal
+          font-size: 15px
+          margin-left: 10px
+      h4
+        margin-top: 10px
+        margin-bottom: 10px
+        opacity: 0.8
+        font-weight: normal
+      p
+        font-size: 14px
+        text-align: justify
+        opacity: 0.8
+        line-height: 1.3
+        min-height: 5em
+      .vote
+        position: absolute
+        right: 28px
+        top: 16px
+        font-size: 40px
+        font-weight: bold
+        opacity: 0.8
+      button
+        padding: 5px 10px
+        background-color: #bbb
+        color: rgba(white,0.9)
+        border-radius: 100px
+        cursor: pointer
+        transition: 0.3s
+        float: right
+        outline: none
+        border: none
+        &:hover
+          color: white
+          background-color: #f95e55
+        &.isFavorite
+          color: white
+          background-color: #f95e55
+          &:hover
+            background-color: #bbb
+            color: rgba(white,0.9)
+    &:hover
+      transform: translateY(-10px)
+      .left .cover
+        transform: translateY(-10px)
+  // 右上購物車控制區
+  .buybox
+    +size(50px,80px)
+    // background-color: white
+    position: fixed
+    right: 30px
+    top: 30px
+    opacity: 0
+  .fixed-control
+    position: fixed
+    right: 30px
+    top: 30px
+    color: white
+    z-index: 1000
+    cursor: pointer
+    opacity: 0.5
+    transition: 0.5s
+    &:hover
+      opacity: 1
+    i
+      font-size: 20px
+      margin-right: 10px
+  // 打開我的最愛界面
+  .control
+    +size(100%)
+    +fixedPos(0px,0px)
+    +flexCenter
+    padding: 5vw
+    box-sizing: border-box
+    color: #eee
+    background-image: linear-gradient(10deg, #111 0%, #111 50%, transparent 100%)
+    opacity: 0 
+    pointer-events: none
+    transition: 0.5s
+    &.isFavoriteOpen
+      opacity: 1
+      pointer-events: initial
+    .panel
+      width: 70%
+    h2 i
+      float: right
+      cursor: pointer
+      opacity: 0.7
+      transition: 0.3s
+      &:hover
+        opacity: 1
+    ul
+      list-style: none
+      padding: 0
+      
+      li
+        display: flex
+        padding: 5px 10px
+        margin: 5px 0px
+        cursor: pointer
+        border-radius: 5px
+        transition: 0.5s
+        &:hover
+          background-color: rgba(white,0.2)
+          transform: translateY(-10px)
+        .thumbnail
+          // display: inline-block
+          +size(50px, 70px)
+          margin-right: 20px
+        h3
+          width: 100%
+          // display: inline-block
+          font-weight: normal
+          font-size: 17px
+          opacity: 0.8
+          .price
+            float: right
+          .remove
+            display: inline-block
+            padding: 4px 8px
+            margin-left: 10px
+            font-size: 14px
+            border-radius: 50px
+            background-color: rgba(white,0.5)
+            transition: 0.5s
+            color: black
+            &:hover
+              background-color: #f95e55
+              
+      

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>TMDb most popular movies</title>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css'><link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div id="app">
+  <div class="title">Top 20 Most Popular Movies on TMDb</div>
+  <div class="movie" @wheel.prevent="wheel">
+    <div class="cards" :class="{isFavoriteOpen: isFavoriteOpen}">
+      <div class="card" v-for="movie in movies">
+        <div class="left">
+          <div class="cover" :style="bgcss(movie.poster_path)"></div>
+        </div>
+        <div class="right">
+          <h2>{{movie.original_title}}<span v-if="movie.original_title!=movie.title">{{movie.title}}</span></h2>
+          <h4>{{movie.release_date}}</h4>
+          <p v-html="movie.overview"></p>
+          <div class="vote" :style="voteColor(movie.vote_average)">{{movie.vote_average}}</div>
+          <button class="add" @click="favorite.indexOf(movie)==-1 ?addFavorite(movie,$event):removeFavorite(movie)" :class="{isFavorite: favorite.indexOf(movie)!=-1}"> <span v-html="favorite.indexOf(movie)==-1 ? '+ Add to Favorites ' : 'Your Favorite ' "> </span><i class="fas fa-heart"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="buybox" :style="bgcss(currentMovie.poster_path)" v-if="currentMovie"></div>
+  <div class="fixed-control" @click="isFavoriteOpen=!isFavoriteOpen"><i class="fas fa-heart"></i><span>{{favorite.length}}</span></div>
+  <div class="control" :class="{isFavoriteOpen: isFavoriteOpen}">
+    <div class="panel">
+      <h2>My Favorites<i class="fas fa-times" @click="isFavoriteOpen=!isFavoriteOpen"></i></h2>
+      <hr/>
+      <ul>
+        <li v-for="(movie,id) in favorite">
+          <div class="thumbnail" :style="bgcss(movie.poster_path)"></div>
+          <h3>{{movie.original_title}}
+            <div class="remove" @click="removeFavorite(movie)"><i class="fas fa-trash-alt"></i></div>
+          </h3>
+        </li>
+        <li v-if="favorite.length==0">
+          <h3>No movie in your favorites! :(</h3>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+<script src='https://unpkg.co/gsap@3/dist/gsap.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.0/axios.min.js'></script><script  src="./script.js"></script>
+
+</body>
+</html>
