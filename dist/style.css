@@ -148,10 +148,10 @@ html, body {
   background-color: #bbb;
   color: rgba(255, 255, 255, 0.9);
 }
-#app .card:hover {
+/* #app .card:hover {
   -webkit-transform: translateY(-10px);
           transform: translateY(-10px);
-}
+} */
 #app .card:hover .left .cover {
   -webkit-transform: translateY(-10px);
           transform: translateY(-10px);
